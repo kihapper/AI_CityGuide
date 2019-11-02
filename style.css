@@ -4,7 +4,7 @@
 body{
     font-family: 'Space Mono', monospace;
     color: antiquewhite;
-    background: darkblue ;
+    background: black ;
   }
 
 h1{
@@ -30,7 +30,7 @@ h1{
     background-color: white; /* Green */
     font-family: 'Space Mono', monospace;
     border: none;
-    color: darkblue;
+    color: black;
     width: 200px;
     padding: 10px 10px;
     text-align: center;

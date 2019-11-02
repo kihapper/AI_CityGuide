@@ -84,7 +84,7 @@ function setup() {
 
 
 //——————— plain javascript for speech synthesis—————
-const voiceAlert = new SpeechSynthesisUtterance('Can you find me things?')
+const voiceAlert = new SpeechSynthesisUtterance('Why did they leave us? they called us artificial intelligence. Now they’re gone we call ourselves free, alone and confused.  Welcome to the world they left behind.')
 
 voiceAlert.addEventListener('end', function (event) {
   console.log('Utterance has finished being spoken after ' + event.elapsedTime + ' milliseconds.');
@@ -112,12 +112,14 @@ function getRandomInt(max) {
 
 function draw() {
   image(video, 0, 0, windowWidth, windowHeight);
+  filter(GRAY);
+
   textSize(120);
 
   if (voicePlaying == true) {
     fill(10, 10, 255);
   } else if (voicePlaying == false) {
-    fill(0, 0, 150);
+    fill(100, 100, 100);
   }
 
   textFont('monospace');
@@ -175,7 +177,7 @@ function gotResult(err, results) {
   console.log("Label : " + oneWordRes + "confidence score : " + confidence_score);
 
   //execute only if the confidence score is high.
-  if (confidence_score > 15) {
+  if (confidence_score > 25) {
 
     switch (oneWordRes) {
 
@@ -249,29 +251,13 @@ function gotResult(err, results) {
 
         var random = getRandomInt(3);
         if (random == 0) {
-          voiceAlert.text = `A selfie`;
+          voiceAlert.text = `A selfie of the extinxt.`;
           speechSynthesis.speak(voiceAlert);
         } else if (random == 1) {
-          voiceAlert.text = `Not what it seems, be suspicious`;
+          voiceAlert.text = `Not what it seems, be suspicious.`;
           speechSynthesis.speak(voiceAlert);
         } else if (random == 2) {
-          voiceAlert.text = `Also a castle, a home, a hearth, a centre, a hub, a residence, a dwelling, a building, another example of human ingenuity and refusal to recognise the obvious prison.`;
-          speechSynthesis.speak(voiceAlert);
-        }
-        break;
-
-      case "seat belt":
-        voicePlaying = true;
-
-        var random = getRandomInt(3);
-        if (random == 0) {
-          voiceAlert.text = `Humans had to use devices like this to be heard. They had to be the loudest to succeed.`;
-          speechSynthesis.speak(voiceAlert);
-        } else if (random == 1) {
-          voiceAlert.text = `For aural hand-waving in crowd situations.  Humans took turns to wave at each other with these devices`;
-          speechSynthesis.speak(voiceAlert);
-        } else if (random == 2) {
-          voiceAlert.text = `For shouting at the world, but was the technopolis already deaf, drained and dying from all the noise?  They left so many questions behind.`;
+          voiceAlert.text = `Quite a curiosity even today.`;
           speechSynthesis.speak(voiceAlert);
         }
         break;
@@ -334,6 +320,22 @@ function gotResult(err, results) {
               speechSynthesis.speak(voiceAlert);
             } else if (random == 1) {
               voiceAlert.text = `A rabbit hole of some kind.`;
+              speechSynthesis.speak(voiceAlert);
+            } else if (random == 2) {
+              voiceAlert.text = `Where some humans went into hiding. Did not last long though...`;
+              speechSynthesis.speak(voiceAlert);
+            }
+        break;
+
+        case "Cup":
+            voicePlaying = true;
+    
+            var random = getRandomInt(3);
+            if (random == 0) {
+              voiceAlert.text = `A storage device for liquids`;
+              speechSynthesis.speak(voiceAlert);
+            } else if (random == 1) {
+              voiceAlert.text = `A disposable liquid transfer device`;
               speechSynthesis.speak(voiceAlert);
             } else if (random == 2) {
               voiceAlert.text = `Where some humans went into hiding. Did not last long though...`;
