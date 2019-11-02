@@ -10,6 +10,8 @@ let isPlaying = false;
 
 let voicePlaying = false;
 
+let didStart = false;
+
 //put the target words here...
 const words = ['keyboard','wig','toilet seat','paper towel','restraunt','television','cab','barbershop','drum','truck','banana'];
 
@@ -58,6 +60,7 @@ function setup() {
 
   select('#start').mousePressed(function() {
     speechSynthesis.speak(voiceAlert);
+    didStart = true;
 
     select('#status').html('Game Started, please turn up volume.');
     playNextWord();
@@ -117,7 +120,7 @@ function draw(){
 
   console.log(oneWordRes + " : " + confidence_score + " : "+ durationTime + " sec" + " : voicePlaying : " + voicePlaying);
 
-  if(durationTime > 2000 && voicePlaying == false){
+  if(durationTime > 2000 && voicePlaying == false && didStart == true){
     classifyVideo();
   }
 
@@ -166,8 +169,6 @@ function gotResult(err, results) {
   if(confidence_score > 15){
 
     switch (oneWordRes) {
-
-      case ""
 
       case "mask" :
         voicePlaying = true;
