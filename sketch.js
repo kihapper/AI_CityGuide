@@ -10,8 +10,10 @@ let isPlaying = false;
 
 let voicePlaying = false;
 let isDetected = false;
-
 let didStart = false;
+
+let startPlayed = false;
+
 
 //put the target words here...
 const words = ['xxxxx'];
@@ -65,7 +67,9 @@ function setup() {
 
     didStart = true;
 
-    select('#status').html('Tour Started, please turn up volume.');
+    oneWordRes = "Introduction...";
+
+    select('#status').html('Show the future AI around...');
     playNextWord();
   });
 
@@ -127,7 +131,13 @@ function draw() {
   textFont('monospace');
   textAlign(CENTER);
   text(oneWordRes, windowWidth / 2, windowHeight / 2);
-  text(confidence_score + "%", windowWidth / 2, windowHeight / 2 + 150);
+
+  if(startPlayed == false){
+  }else if (startPlayed == true){
+    text(confidence_score + "%", windowWidth / 2, windowHeight / 2 + 150);
+  }
+
+
   //timer and 
   end();
 
@@ -153,7 +163,7 @@ function playNextWord() {
 function modelReady() {
   // Change the status of the model once its ready
   oneWordRes = "Press Start";
-  select('#status').html('Model Loaded, press Start Game');
+  select('#status').html('Loaded, press Start Tour');
 }
 
 // Get a prediction for the current video frame
@@ -403,6 +413,7 @@ function speechEnded() {
   console.log("Speech has ended");
   voicePlaying = false;
   voiceAlert.text = ``;
+  startPlayed = true;
   start();
   //if (isPlaying) classifyVideo();
 }
