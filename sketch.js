@@ -9,11 +9,12 @@ let currentIndex = 0;
 let isPlaying = false;
 
 let voicePlaying = false;
+let isDetected = false;
 
 let didStart = false;
 
 //put the target words here...
-const words = ['keyboard','wig','toilet seat','paper towel','restraunt','television','cab','barbershop','drum','truck','banana'];
+const words = ['xxxxx'];
 
 //debug
 //const words = ['mask','restraunt'];
@@ -49,7 +50,7 @@ function setup() {
   video.elt.setAttribute('playsinline', '');
   video.hide();
 
-  
+
   //When model is ready, call modelReady();
   classifier = ml5.imageClassifier('MobileNet', video, modelReady);
 
@@ -58,14 +59,15 @@ function setup() {
   // speech synthesis function on mobile, only works when the user volunteering PRESSED a button
   // So it is important to trigger the button command on pressing start
 
-  select('#start').mousePressed(function() {
+  select('#start').mousePressed(function () {
     speechSynthesis.speak(voiceAlert);
     didStart = true;
 
-    select('#status').html('Game Started, please turn up volume.');
+    select('#status').html('Tour Started, please turn up volume.');
     playNextWord();
   });
 
+  /*
   select('#next').mousePressed(function() {
     speechSynthesis.speak(voiceAlert);
 
@@ -76,6 +78,7 @@ function setup() {
     }
     playNextWord();
   });
+  */
 
 }
 
@@ -83,7 +86,7 @@ function setup() {
 //——————— plain javascript for speech synthesis—————
 const voiceAlert = new SpeechSynthesisUtterance('Can you find me things?')
 
-voiceAlert.addEventListener('end', function(event) { 
+voiceAlert.addEventListener('end', function (event) {
   console.log('Utterance has finished being spoken after ' + event.elapsedTime + ' milliseconds.');
   speechEnded();
 });
@@ -107,20 +110,26 @@ function getRandomInt(max) {
 //———————————————————————————————————————————————————
 
 
-function draw(){
+function draw() {
   image(video, 0, 0, windowWidth, windowHeight);
   textSize(120);
-  fill(10, 10, 255);
+
+  if (voicePlaying == true) {
+    fill(10, 10, 255);
+  } else if (voicePlaying == false) {
+    fill(0, 0, 150);
+  }
+
   textFont('monospace');
   textAlign(CENTER);
-  text(oneWordRes, windowWidth/2, windowHeight/2);
-  text(confidence_score + "%", windowWidth/2, windowHeight/2 + 150);
+  text(oneWordRes, windowWidth / 2, windowHeight / 2);
+  text(confidence_score + "%", windowWidth / 2, windowHeight / 2 + 150);
   //timer and 
   end();
 
-  console.log(oneWordRes + " : " + confidence_score + " : "+ durationTime + " sec" + " : voicePlaying : " + voicePlaying);
+  console.log(oneWordRes + " : " + confidence_score + " : " + durationTime + " sec" + " : voicePlaying : " + voicePlaying);
 
-  if(durationTime > 2000 && voicePlaying == false && didStart == true){
+  if (durationTime > 2000 && voicePlaying == false && didStart == true) {
     classifyVideo();
   }
 
@@ -131,8 +140,8 @@ function playNextWord() {
   //speechSynthesis.speak(voiceAlert);
   isPlaying = true;
   currentWord = words[currentIndex];
-  select('#instruction').html(`Go and find ${currentWord}!!`);
-  
+  select('#instruction').html(`PRIMITIVE OBJECTS`);
+
   // Call the classifyVideo function to start classifying the video
   //classifyVideo();
 }
@@ -152,10 +161,10 @@ function gotResult(err, results) {
   // The results are in an array ordered by confidence.
   // Get the first result string
   const result = results[0].label;
-  confidence_score = floor(results[0].confidence*100);
+  confidence_score = floor(results[0].confidence * 100);
 
   // Split the first result string by coma and get the first word
-   oneWordRes = result.split(',')[0];
+  oneWordRes = result.split(',')[0];
   // Get the top 3 results as strings in an array
   // Read more about map function here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
   const top3Res = results.map(r => r.label);
@@ -166,71 +175,188 @@ function gotResult(err, results) {
   console.log("Label : " + oneWordRes + "confidence score : " + confidence_score);
 
   //execute only if the confidence score is high.
-  if(confidence_score > 15){
+  if (confidence_score > 15) {
 
     switch (oneWordRes) {
 
-      case "mask" :
+      case "water bottle":
         voicePlaying = true;
 
         var random = getRandomInt(3);
-        if(random == 0){
-          voiceAlert.text = `A selfie` ;
+        if (random == 0) {
+          voiceAlert.text = `We suspect these were used to create random rafts in the ocean`;
+          speechSynthesis.speak(voiceAlert);
+        } else if (random == 1) {
+          voiceAlert.text = `How fossil fuels turned into.`;
+          speechSynthesis.speak(voiceAlert);
+        } else if (random == 2) {
+          voiceAlert.text = `Because they wanted to see the world convex`;
           speechSynthesis.speak(voiceAlert);
         }
-        else if(random == 1){
-          voiceAlert.text = `Not what it seems, be suspicious` ;
-          speechSynthesis.speak(voiceAlert);
-        }
-        else if (random == 2){
-          voiceAlert.text = `Also a castle, a home, a hearth, a centre, a hub, a residence, a dwelling, a building, another example of human ingenuity and refusal to recognise the obvious prison.` ;
-          speechSynthesis.speak(voiceAlert);
-        }
+        break;
 
+      case "pay phone":
+        voicePlaying = true;
+
+        var random = getRandomInt(3);
+        if (random == 0) {
+          voiceAlert.text = `A pay per data trail device`;
+          speechSynthesis.speak(voiceAlert);
+        } else if (random == 1) {
+          voiceAlert.text = `As if humans didn’t talk enough`;
+          speechSynthesis.speak(voiceAlert);
+        } else if (random == 2) {
+          voiceAlert.text = `Something like a dial-up-modem, only not so clever`;
+          speechSynthesis.speak(voiceAlert);
+        }
+        break;
+
+      case "Loafer":
+        voicePlaying = true;
+
+        var random = getRandomInt(3);
+        if (random == 0) {
+          voiceAlert.text = `A tool to mask footprints`;
+          speechSynthesis.speak(voiceAlert);
+        } else if (random == 1) {
+          voiceAlert.text = `A device to catch and record the footfall of humanity`;
+          speechSynthesis.speak(voiceAlert);
+        } else if (random == 2) {
+          voiceAlert.text = `Also a slug killing device, an earth compactor, and an extendable toe pad.`;
+          speechSynthesis.speak(voiceAlert);
+        }
+        break;
+
+      case "velvet":
+        voicePlaying = true;
+
+        var random = getRandomInt(3);
+        if (random == 0) {
+          voiceAlert.text = `The mysterious softness of them`;
+          speechSynthesis.speak(voiceAlert);
+        } else if (random == 1) {
+          voiceAlert.text = `They said softness was their strength`;
+          speechSynthesis.speak(voiceAlert);
+        } else if (random == 2) {
+          voiceAlert.text = `What is softness?  They left so many questions behind.`;
+          speechSynthesis.speak(voiceAlert);
+        }
+        break;
+
+
+      case "mask":
+        voicePlaying = true;
+
+        var random = getRandomInt(3);
+        if (random == 0) {
+          voiceAlert.text = `A selfie`;
+          speechSynthesis.speak(voiceAlert);
+        } else if (random == 1) {
+          voiceAlert.text = `Not what it seems, be suspicious`;
+          speechSynthesis.speak(voiceAlert);
+        } else if (random == 2) {
+          voiceAlert.text = `Also a castle, a home, a hearth, a centre, a hub, a residence, a dwelling, a building, another example of human ingenuity and refusal to recognise the obvious prison.`;
+          speechSynthesis.speak(voiceAlert);
+        }
         break;
 
       case "seat belt":
         voicePlaying = true;
 
         var random = getRandomInt(3);
-        if(random == 0){
-          voiceAlert.text = `Humans had to use devices like this to be heard. They had to be the loudest to succeed.` ;
+        if (random == 0) {
+          voiceAlert.text = `Humans had to use devices like this to be heard. They had to be the loudest to succeed.`;
+          speechSynthesis.speak(voiceAlert);
+        } else if (random == 1) {
+          voiceAlert.text = `For aural hand-waving in crowd situations.  Humans took turns to wave at each other with these devices`;
+          speechSynthesis.speak(voiceAlert);
+        } else if (random == 2) {
+          voiceAlert.text = `For shouting at the world, but was the technopolis already deaf, drained and dying from all the noise?  They left so many questions behind.`;
           speechSynthesis.speak(voiceAlert);
         }
-        else if(random == 1){
-          voiceAlert.text = `For aural hand-waving in crowd situations.  Humans took turns to wave at each other with these devices` ;
-          speechSynthesis.speak(voiceAlert);
-        }
-        else if (random == 2){
-          voiceAlert.text = `For shouting at the world, but was the technopolis already deaf, drained and dying from all the noise?  They left so many questions behind.` ;
-          speechSynthesis.speak(voiceAlert);
-        }
-
         break;
 
-      case "sunglasses":
-        voicePlaying = true;
-        voiceAlert.text = `Sunglasses ${oneWordRes}?` ;
-        speechSynthesis.speak(voiceAlert);
+        case "ashcan":
+            voicePlaying = true;
+    
+            var random = getRandomInt(3);
+            if (random == 0) {
+              voiceAlert.text = `This was where materials were collected only to be spread out again later`;
+              speechSynthesis.speak(voiceAlert);
+            } else if (random == 1) {
+              voiceAlert.text = `For the hungry hunter-gatherer at large in the city`;
+              speechSynthesis.speak(voiceAlert);
+            } else if (random == 2) {
+              voiceAlert.text = `Because they made ashes to ashes to ashes`;
+              speechSynthesis.speak(voiceAlert);
+            }
         break;
+
+        case "running shoe":
+            voicePlaying = true;
+    
+            var random = getRandomInt(3);
+            if (random == 0) {
+              voiceAlert.text = `Always racing on those two puny feet of theirs. Never lasted`;
+              speechSynthesis.speak(voiceAlert);
+            } else if (random == 1) {
+              voiceAlert.text = `A tool for the tax of fashionable exercise and movement.`;
+              speechSynthesis.speak(voiceAlert);
+            } else if (random == 2) {
+              voiceAlert.text = `Running late, they tried to mask their unreliability with ticking clocks and running shoes`;
+              speechSynthesis.speak(voiceAlert);
+            }
+        break;
+
+        case "Bucket":
+            voicePlaying = true;
+    
+            var random = getRandomInt(3);
+            if (random == 0) {
+              voiceAlert.text = `A community donation pot of some kind`;
+              speechSynthesis.speak(voiceAlert);
+            } else if (random == 1) {
+              voiceAlert.text = `Mixed with water and mops for wet indoor arm exercises`;
+              speechSynthesis.speak(voiceAlert);
+            } else if (random == 2) {
+              voiceAlert.text = `Probably used for carrying landfill from point A to point B, C, D, E, F & G, or was that Z?`;
+              speechSynthesis.speak(voiceAlert);
+            }
+        break;
+
+
+        case "manhole cover":
+            voicePlaying = true;
+    
+            var random = getRandomInt(3);
+            if (random == 0) {
+              voiceAlert.text = `A place to store people and piping in drains`;
+              speechSynthesis.speak(voiceAlert);
+            } else if (random == 1) {
+              voiceAlert.text = `A rabbit hole of some kind.`;
+              speechSynthesis.speak(voiceAlert);
+            } else if (random == 2) {
+              voiceAlert.text = `Where some humans went into hiding. Did not last long though...`;
+              speechSynthesis.speak(voiceAlert);
+            }
+        break;
+
 
       default:
         console.log("!!!Default state on the case statement");
         //voicePlaying = false;
         start();
-        break;    
+        break;
     }
-  }
-  else{
-    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! not see anything of value");
+  } else {
     console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! not see anything of value");
 
     start();
     //voicePlaying = false;
-   // classifyVideo();    
+    // classifyVideo();    
   }
 
-  
+
   /*
   if (ifFound) {
     // If top 3 results includes the current word
