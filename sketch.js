@@ -204,7 +204,7 @@ function gotResult(err, results) {
           voiceAlert.text = `Where fossil fuels ended up. They seem obsessed with making tons of these.`;
           speechSynthesis.speak(voiceAlert);
         } else if (random == 2) {
-          voiceAlert.text = `Because they wanted to see the world convex`;
+          voiceAlert.text = `Humans were obsessed with making these plastic wastes`;
           speechSynthesis.speak(voiceAlert);
         }
         else if (random == 3) {
@@ -261,6 +261,19 @@ function gotResult(err, results) {
         }
         break;
 
+        case "comic book":
+            voicePlaying = true;
+    
+            var random = getRandomInt(2);
+            if (random == 0) {
+              voiceAlert.text = `Doodle things that humans so loved`;
+              speechSynthesis.speak(voiceAlert);
+            } else if (random == 1) {
+              voiceAlert.text = `We liked to make memes out of them`;
+              speechSynthesis.speak(voiceAlert);
+            } 
+            break;
+
 
       case "mask":
         voicePlaying = true;
@@ -289,7 +302,7 @@ function gotResult(err, results) {
               voiceAlert.text = `For the hungry hunter-gatherer at large in the city`;
               speechSynthesis.speak(voiceAlert);
             } else if (random == 2) {
-              voiceAlert.text = `Because they made ashes to ashes to ashes`;
+              voiceAlert.text = `Because they made ashes to ashes to ashes. `;
               speechSynthesis.speak(voiceAlert);
             }
         break;
@@ -519,6 +532,18 @@ function gotResult(err, results) {
                 }
             break;
 
+            case "limousine":
+                voicePlaying = true;
+        
+                var random = getRandomInt(3);
+                if (random == 0) {
+                  voiceAlert.text = `Four legged things that humans rode which smelled really bad.`;
+                  speechSynthesis.speak(voiceAlert);
+                } else if (random == 1) {
+                  voiceAlert.text = `Unique creature of metal with 4 legs. Went extinct with the humans`;
+                  speechSynthesis.speak(voiceAlert);
+                } 
+            break;
         
         
         
@@ -574,6 +599,21 @@ function gotResult(err, results) {
                 }
             break;
 
+            case "jean":
+                voicePlaying = true;
+        
+                var random = getRandomInt(3);
+                if (random == 0) {
+                  voiceAlert.text = `The weird skin that humans wore`;
+                  speechSynthesis.speak(voiceAlert);
+                } else if (random == 1) {
+                  voiceAlert.text = `Man's best friend and also their skin`;
+                  speechSynthesis.speak(voiceAlert);
+                } else if (random == 2) {
+                  voiceAlert.text = `The man-skin as we liked to call it.`;
+                  speechSynthesis.speak(voiceAlert);
+                }
+            break;
         
         
          case "Ping-pong ball":
@@ -756,6 +796,22 @@ function gotResult(err, results) {
                   speechSynthesis.speak(voiceAlert);
                 } else if (random == 2) {
                   voiceAlert.text = `Also a hole punch, a liquid storage device, an ink squirter for marking personal baggage and home tattooing kit`;
+                  speechSynthesis.speak(voiceAlert);
+                }
+            break;
+
+            case "tile roof":
+                voicePlaying = true;
+        
+                var random = getRandomInt(3);
+                if (random == 0) {
+                  voiceAlert.text = `Humans loved to make the floor pretty and then dirty.`;
+                  speechSynthesis.speak(voiceAlert);
+                } else if (random == 1) {
+                  voiceAlert.text = `Somehow humans insited on having stones on the floor`;
+                  speechSynthesis.speak(voiceAlert);
+                } else if (random == 2) {
+                  voiceAlert.text = `The floor is filled with stones`;
                   speechSynthesis.speak(voiceAlert);
                 }
             break;
