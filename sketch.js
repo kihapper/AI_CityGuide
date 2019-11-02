@@ -61,6 +61,8 @@ function setup() {
 
   select('#start').mousePressed(function () {
     speechSynthesis.speak(voiceAlert);
+    voicePlaying = true;
+
     didStart = true;
 
     select('#status').html('Tour Started, please turn up volume.');
@@ -112,7 +114,7 @@ function getRandomInt(max) {
 
 function draw() {
   image(video, 0, 0, windowWidth, windowHeight);
-  filter(GRAY);
+  //filter(GRAY);
 
   textSize(120);
 
