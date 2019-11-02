@@ -189,23 +189,27 @@ function gotResult(err, results) {
   console.log("Label : " + oneWordRes + "confidence score : " + confidence_score);
 
   //execute only if the confidence score is high.
-  if (confidence_score > 25) {
+  if (confidence_score > 20) {
 
     switch (oneWordRes) {
 
       case "water bottle":
         voicePlaying = true;
 
-        var random = getRandomInt(3);
+        var random = getRandomInt(4);
         if (random == 0) {
           voiceAlert.text = `We suspect these were used to create random rafts in the ocean`;
           speechSynthesis.speak(voiceAlert);
         } else if (random == 1) {
-          voiceAlert.text = `How fossil fuels turned into.`;
+          voiceAlert.text = `Where fossil fuels ended up. They seem obsessed with making tons of these.`;
           speechSynthesis.speak(voiceAlert);
         } else if (random == 2) {
           voiceAlert.text = `Because they wanted to see the world convex`;
           speechSynthesis.speak(voiceAlert);
+        }
+        else if (random == 3) {
+        voiceAlert.text = `So many of these things have piled up to form an island`;
+        speechSynthesis.speak(voiceAlert);
         }
         break;
 
@@ -350,7 +354,7 @@ function gotResult(err, results) {
               voiceAlert.text = `A disposable liquid transfer device`;
               speechSynthesis.speak(voiceAlert);
             } else if (random == 2) {
-              voiceAlert.text = `Where some humans went into hiding. Did not last long though...`;
+              voiceAlert.text = `Another waste they have made. Like a lot.`;
               speechSynthesis.speak(voiceAlert);
             }
         break;
