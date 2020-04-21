@@ -845,7 +845,7 @@ function gotResult(err, results) {
         break;
     }
   } else {
-    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! not see anything of value");
+    console.log("not see anything of value");
 
     start();
     //voicePlaying = false;

@@ -1,5 +1,5 @@
 # AI City Guide Game 
 
 Play Demo here 
-This is a project made for the workshop Trust in Play : http://trustinplay.eu/
+This is a project made during the one-day gamejam at Trust in Play : http://trustinplay.eu/
 
